@@ -6,7 +6,9 @@
         <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
       </form>
       <ul>
-        <li v-for="(data, index) in skills" :key="index">{{ data.skill }}</li>
+        <li v-for="(data, index) in skills" :key="index">{{ data.skill }}
+          <span v-on:click="remove(index)">Remove</span>
+        </li>
         <p v-if="skills.length >= 2">you have more than 2 skills</p>
         <p v-else>You have lessthan 2 skills</p>
       </ul>
@@ -36,6 +38,9 @@ export default {
           console.log('Not Valid');
         } 
       })
+    },
+    remove(id) {
+      this.skills.splice(id, 1)
     }
   }
 }
